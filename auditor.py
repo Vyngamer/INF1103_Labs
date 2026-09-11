@@ -5,7 +5,7 @@ while stock != "quit":
     if stock.isdigit() == False:
         print("Please enter a positive number")
         rejected += 1
-    elif int(inventory) > 500:
+    elif int(inventory) + int(stock) > 500:
         print("Warning: stock above 500")
         break
     else:
