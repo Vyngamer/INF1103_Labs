@@ -7,3 +7,9 @@ class Product:
 
     def update_stock(self, quantity):
         self.stock += quantity
+
+class Inventory:
+    def __init__(self):
+        pass
+
+    
