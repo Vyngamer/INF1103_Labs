@@ -4,3 +4,6 @@ class Product:
         self.product_name = product_name
         self.price = price
         self.stock = stock
+
+    def update_stock(self, quantity):
+        self.stock += quantity
