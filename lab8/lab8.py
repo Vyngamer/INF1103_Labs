@@ -17,7 +17,7 @@ class Product:
     
     # function to display info
     def display_information(self):
-        print(f"ID: {self.__product_id} | Name: {self.__name} | Price: ${self.__price:.2f} | Stock: {self.__stock}")
+        print(f"ID: {self.__prod_id} | Name: {self.__name} | Price: ${self.__price} | Stock: {self.__stock}")
 
 
     def get_id(self):
@@ -48,7 +48,7 @@ class Inventory:
 
     # add prod function
     def add_prod(self):
-        print("/nAdd new Product")
+        print("\nAdd new Product")
         prod_id = input("Product ID: ")
         prod_name = input("Product Name: ")
         price = input("Price: ")
@@ -80,8 +80,7 @@ class Inventory:
     # update stock function
     def update_stock(self):
         print("\nUpdate stock")
-        prod_id = input("Enter Product ID: ")
-        prod = self.search_prod(prod_id)
+        prod = self.search_prod()
         if prod:
             print("\nProduct Found:")
             print("Name:", prod.get_name())
@@ -115,8 +114,11 @@ def load_inventory():
                     inventory.products.append(product)
                 print("Inventory loaded successfully.")
     else:
+        print("products.json not found")
+        print("Creating new json")
         with open("products.json", "w") as file:
             json.dump([], file)
+        print("new json created")
     return inventory
 
 # menu function to display the menu
@@ -132,3 +134,41 @@ def menu():
 
 
 
+# main function
+def main():
+    print("========================================")
+    print("INVENTORY MANAGEMENT SYSTEM")
+    print("========================================")
+    # load the inventory
+    inventory = load_inventory()
+    # display the menu
+    menu()
+    while True:
+        user_option = input("Enter option: ")
+        if user_option not in ["1","2","3","4","5","6"]:
+            print("Invalid option, try again")
+        elif user_option == '1':
+            inventory.display_all()
+        elif user_option == '2':
+            inventory.add_prod()
+        elif user_option == '3':
+            inventory.update_stock()
+        elif user_option == '4':
+            prod = inventory.search_prod()
+            if prod:
+                print("\nProduct Found")
+                print("-" * 50)
+                prod.display_information()
+                print("-" * 50)
+            else:
+                print("\nProduct not found.")
+        elif user_option == '5':
+            inventory.save_inventory()
+        else:
+            print("Saving inventory before exit...")
+            inventory.save_inventory()
+            print("\nThank you for using Inventory Management System.")
+            print("Program terminated.")
+            sys.exit()
+
+main()
