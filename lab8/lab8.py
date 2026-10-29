@@ -39,4 +39,64 @@ class Product:
             "price": self.__price,
             "stock": self.__stock
         }
+
+
+# create the inventory class
+class Inventory:
+    def __init__(self):
+        self.products = []
+
+    # add prod function
+    def add_prod(self):
+        print("/nAdd new Product")
+        prod_id = input("Product ID: ")
+        prod_name = input("Product Name: ")
+        price = input("Price: ")
+        stock = input("Stock Quantity: ")
+        new_prod = Product(prod_id, prod_name, price, stock)
+        self.products.append(new_prod)
+        print("\nProduct added successfully")
+
+    # search prod function
+    def search_prod(self):
+        print("\nSearch Product")
+        prod_id = input("Enter Product ID: ")
+        for prod in self.products:
+            if prod.get_id() == prod_id:
+                return prod
+        return None
+
+    # display all function
+    def display_all(self):
+        if len(self.products) == 0:
+            print("Inventory is empty")
+        else:
+            print("\nCurrent Inventory")
+            print("------------------------------------------------")
+            for prod in self.products:
+                prod.display_information()
+            print("------------------------------------------------")
+
+    # update stock function
+    def update_stock(self):
+        print("\nUpdate stock")
+        prod_id = input("Enter Product ID: ")
+        prod = self.search_prod(prod_id)
+        if prod:
+            print("\nProduct Found:")
+            print("Name:", prod.get_name())
+            print("Current Stock:", prod.get_stock())
+            new_stock = input("\nNew Stock Quantity: ")
+            prod.update_stock(new_stock)
+            print("\nStock updataed successfully")
+        else:
+            print("\nProduct not found")
     
+    # save inventory func
+    def save_inventory(self):
+        data = []
+        for product in self.products:
+            data.append(product.to_dict())
+        with open("products.json", "w") as file:
+            json.dump(data, file, indent=4)
+        print("\nInventory saved successfully.")
