@@ -100,3 +100,38 @@ class Inventory:
         with open("products.json", "w") as file:
             json.dump(data, file, indent=4)
         print("\nInventory saved successfully.")
+
+# Load Inventory Function
+def load_inventory():
+    inventory = Inventory()
+    if os.path.exists("products.json"):
+        print("products.json found")
+        with open("products.json", "r") as file:
+            data = file.read()
+            if data:
+                products = json.loads(data)
+                for item in products:
+                    product = Product(item["id"], item["name"], item["price"], item["stock"])
+                    inventory.products.append(product)
+                print("Inventory loaded successfully.")
+    else:
+        with open("products.json", "w") as file:
+            json.dump([], file)
+    return inventory
+
+# # menu function to display the menu
+# def menu():
+#     print("----------- MENU -----------")
+#     print("1. Display All Products")
+#     print("2. Add Product")
+#     print("3. Update Stock")
+#     print("4. Search Product")
+#     print("5. Save Inventory")
+#     print("6. Exit")
+#     print("----------------------------")
+
+
+
+# # main func
+# def main():
+#     inventory = load_inve
