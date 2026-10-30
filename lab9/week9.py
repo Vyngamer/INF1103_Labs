@@ -6,40 +6,39 @@ import sys
 # create the product class 
 class Product:
     def __init__(self, prod_id, name, price, stock):
-        self.__prod_id = prod_id
-        self.__name = name
-        self.__price = price
-        self.__stock = stock
+        self._prod_id = prod_id
+        self._name = name
+        self._price = price
+        self._stock = stock
 
     # function to update stock
     def update_stock(self, quantity):
-        self.__stock = int(quantity)
+        self._stock = int(quantity)
     
     # function to display info
     def display_information(self):
-        print(f"ID: {self.__prod_id} | Name: {self.__name} | Price: ${self.__price} | Stock: {self.__stock}")
+        print(f"ID: {self._prod_id} | Name: {self._name} | Price: ${self._price} | Stock: {self._stock}")
 
 
     def get_id(self):
-        return self.__prod_id
+        return self._prod_id
 
     def get_name(self):
-        return self.__name
+        return self._name
 
     def get_price(self):
-        return self.__price
+        return self._price
 
     def get_stock(self):
-        return self.__stock
+        return self._stock
 
     def to_dict(self):
         return{
-            "id": self.__prod_id,
-            "name": self.__name,
-            "price": self.__price,
-            "stock": self.__stock
+            "id": self._prod_id,
+            "name": self._name,
+            "price": self._price,
+            "stock": self._stock
         }
-
 
 # create the inventory class
 class Inventory:
@@ -132,7 +131,15 @@ def menu():
     print("6. Exit")
     print("----------------------------")
 
+# create physicalproduct class
+class PhysicalProduct(Product):
+    def __init__(self, prod_id, name, price, stock, weight):
+        super().__init__(prod_id, name, price, stock)
+        self._weight = weight
 
+    def display_information(self):
+        #print(f"ID: {self.__prod_id} | Name: {self.__name} | Price: ${self.__price} | Stock: {self.__stock}")
+        print(f"ID: {self._prod_id} | Name: {self._name} | Price: ${self._price} | Stock: {self._stock} | Weight: {self._weight}")
 
 # main function
 def main():
