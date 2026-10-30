@@ -1,4 +1,4 @@
-# getting input function
+ # getting input function
 def get_valid_input():
     stock = input("Please enter a stock: ")
     if stock == "quit":
