@@ -138,8 +138,21 @@ class PhysicalProduct(Product):
         self._weight = weight
 
     def display_information(self):
-        #print(f"ID: {self.__prod_id} | Name: {self.__name} | Price: ${self.__price} | Stock: {self.__stock}")
-        print(f"ID: {self._prod_id} | Name: {self._name} | Price: ${self._price} | Stock: {self._stock} | Weight: {self._weight}")
+        #print(f"ID: {self._prod_id} | Name: {self._name} | Price: ${self._price} | Stock: {self._stock} | Weight: {self._weight}")
+        print(f" | Weight: {self._weight}g")
+
+
+# create a digitalproduct class
+class DigitalProduct(Product):
+    def __init__(self, prod_id, name, price, stock, download_size):
+        super().__init__(prod_id, name, price, stock)
+        self._download_size = download_size
+
+    def display_information(self):
+        #print(f"ID: {self._prod_id} | Name: {self._name} | Price: ${self._price} | Stock: {self._stock} | Download Size: {self._download_size}")
+        print(f" | Download Size: {self._download_size}MB")
+
+
 
 # main function
 def main():
