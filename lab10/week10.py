@@ -209,6 +209,13 @@ class Inventory:
         print("\nInventory saved successfully.")
 
 
+# new orderline class
+class OrderLine:
+    def __init__(self, product:Product, quantity):
+        self.product: Product = product
+        self.quantity = quantity
+
+
 # Load Inventory Function
 def load_inventory():
     inventory = Inventory()
