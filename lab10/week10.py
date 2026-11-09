@@ -219,6 +219,19 @@ class OrderLine:
         return self.product._price * self.quantity
 
 
+
+# new order class
+class Order:
+    def __init__(self, order_id:str):
+        self.order_id = order_id
+        self.order_lines:list[OrderLine] = []
+
+    def add_order_line(self, product: Product, quantity: int):
+        order_line = OrderLine(product, quantity)
+        self.order_lines.append(order_line)
+
+
+
 # Load Inventory Function
 def load_inventory():
     inventory = Inventory()
