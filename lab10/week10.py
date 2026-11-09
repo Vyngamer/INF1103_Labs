@@ -77,11 +77,14 @@ class PhysicalProduct(Product):
         data["weight"] = self._weight
         return data
 
+    def display_supplier_info(self):
+            self._supplier.display_information()
+
 
 # create a digitalproduct class
 class DigitalProduct(Product):
-    def __init__(self, prod_id, name, price, stock, download_size):
-        super().__init__(prod_id, name, price, stock)
+    def __init__(self, prod_id, name, price, stock, supplier:Supplier, download_size):
+        super().__init__(prod_id, name, price, stock, supplier)
         self._download_size = download_size
 
     def display_information(self):
@@ -96,6 +99,9 @@ class DigitalProduct(Product):
         data["type"] = "digital"
         data["download_size"] = self._download_size
         return data
+
+    def display_supplier_info(self):
+        self._supplier.display_information()
 
 
 class CanBeShipped(ABC):
