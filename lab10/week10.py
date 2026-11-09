@@ -3,6 +3,14 @@ import os
 import sys
 from abc import ABC, abstractmethod
 
+# create a supplier class
+class Supplier:
+    def __init__(self, supplier_id, name, contact_email):
+        self._supplier_id = supplier_id
+        self._name = name
+        self._contact_email = contact_email
+
+
 # create the product class 
 class Product(ABC):
     def __init__(self, prod_id, name, price, stock):
