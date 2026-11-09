@@ -49,6 +49,9 @@ class Product(ABC):
             "stock": self._stock
         }
 
+    def display_supplier_info(self):
+        self._supplier.display_information()
+
     @abstractmethod
     def get_fulfilment_info(self):
         pass
