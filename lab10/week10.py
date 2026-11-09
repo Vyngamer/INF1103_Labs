@@ -10,14 +10,18 @@ class Supplier:
         self._name = name
         self._contact_email = contact_email
 
+    def display_information(self):
+        print(f"Supplier ID: {self._supplier_id} | Supplier Name: {self._name} | Contact Email: {self._contact_email}")
+
 
 # create the product class 
 class Product(ABC):
-    def __init__(self, prod_id, name, price, stock):
+    def __init__(self, prod_id, name, price, stock, supplier:Supplier):
         self._prod_id = prod_id
         self._name = name
         self._price = price
         self._stock = stock
+        self._supplier : Supplier = supplier
 
     def update_stock(self, quantity):
         self._stock = int(quantity)
@@ -52,8 +56,8 @@ class Product(ABC):
 
 # create physicalproduct class
 class PhysicalProduct(Product):
-    def __init__(self, prod_id, name, price, stock, weight):
-        super().__init__(prod_id, name, price, stock)
+    def __init__(self, prod_id, name, price, stock, supplier:Supplier, weight):
+        super().__init__(prod_id, name, price, stock, supplier)
         self._weight = weight
 
     def display_information(self):
