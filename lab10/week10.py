@@ -116,9 +116,30 @@ class CanBeShipped(ABC):
 # create the inventory class
 class Inventory:
     def __init__(self):
-        self.products = []
+        self.products: list[Product] = []
 
-    def add_prod(self):
+    # new add product method
+    def add_product(self, product: Product):
+        self.products.append(product)
+
+    # new remove product method
+    def remove_product(self,product_id: str):
+        product = self.find_product(product_id)
+        if product:
+            self.products.remove(product)
+            return product
+        return None
+
+    # new find_product method
+    def find_product(self, product_id: str):
+        for product in self.products:
+            if product.get_id() == product_id:
+                return product
+        return None
+    
+    
+    def add_prod(self, prod:Product):
+        self.products.append(prod)
         print("\nAdd new Product")
         prod_type = input("Enter Type (1 for Physical, 2 for Digital): ")
         
@@ -140,6 +161,13 @@ class Inventory:
             
         self.products.append(new_prod)
         print("\nProduct added successfully")
+
+    def remove_product(self, product_id):
+        prod = self.search_prod(product_id)
+        if prod:
+            self.products.remove(prod)
+            return prod
+        return None
 
     def search_prod(self):
         print("\nSearch Product")
