@@ -215,6 +215,9 @@ class OrderLine:
         self.product: Product = product
         self.quantity = quantity
 
+    def calculate_subtotal(self):
+        return self.product._price * self.quantity
+
 
 # Load Inventory Function
 def load_inventory():
